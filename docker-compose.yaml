@@ -21,7 +21,10 @@ services:
       context: .
       dockerfile: ./docker/dockerfiles/rails.Dockerfile
       args:
-        BASE_IMAGE: chatwoot:development
+        BUNDLE_WITHOUT: ''
+        EXECJS_RUNTIME: 'Node'
+        RAILS_ENV: 'development'
+        RAILS_SERVE_STATIC_FILES: 'false'
     image: chatwoot-rails:development
     volumes:
       - ./:/app:delegated
@@ -69,7 +72,10 @@ services:
       context: .
       dockerfile: ./docker/dockerfiles/vite.Dockerfile
       args:
-        BASE_IMAGE: chatwoot:development
+        BUNDLE_WITHOUT: ''
+        EXECJS_RUNTIME: 'Node'
+        RAILS_ENV: 'development'
+        RAILS_SERVE_STATIC_FILES: 'false'
     image: chatwoot-vite:development
     volumes:
       - ./:/app:delegated
