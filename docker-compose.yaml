@@ -45,8 +45,7 @@ services:
       - VITE_DEV_SERVER_HOST=vite
       - NODE_ENV=development
       - RAILS_ENV=development
-    entrypoint: /app/docker/entrypoints/rails.sh
-    command: ["bundle", "exec", "rails", "s", "-p", "3000", "-b", "0.0.0.0"]
+    command: ["sh", "-c", "bundle install && bundle exec rails db:prepare && bundle exec rails s -p 3000 -b 0.0.0.0"]
 
   sidekiq:
     <<: *base
@@ -89,8 +88,7 @@ services:
       - VITE_DEV_SERVER_HOST=0.0.0.0
       - NODE_ENV=development
       - RAILS_ENV=development
-    entrypoint: /app/docker/entrypoints/vite.sh
-    command: bin/vite dev
+    command: ["sh", "-c", "pnpm install --force && bin/vite dev"]
 
   postgres:
     image: pgvector/pgvector:pg16
