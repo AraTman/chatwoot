@@ -27,10 +27,6 @@ services:
         RAILS_SERVE_STATIC_FILES: 'false'
     image: chatwoot-rails:development
     volumes:
-      - ./:/app:delegated
-      - node_modules:/app/node_modules
-      - packs:/app/public/packs
-      - cache:/app/tmp/cache
       - bundle:/usr/local/bundle
     depends_on:
       - postgres
@@ -51,10 +47,6 @@ services:
     <<: *base
     image: chatwoot-rails:development
     volumes:
-      - ./:/app:delegated
-      - node_modules:/app/node_modules
-      - packs:/app/public/packs
-      - cache:/app/tmp/cache
       - bundle:/usr/local/bundle
     depends_on:
       - postgres
@@ -76,12 +68,6 @@ services:
         RAILS_ENV: 'development'
         RAILS_SERVE_STATIC_FILES: 'false'
     image: chatwoot-vite:development
-    volumes:
-      - ./:/app:delegated
-      - node_modules:/app/node_modules
-      - packs:/app/public/packs
-      - cache:/app/tmp/cache
-      - bundle:/usr/local/bundle
     ports:
       - "3036:3036" # Vite dev server
     environment:
@@ -121,7 +107,4 @@ services:
 volumes:
   postgres:
   redis:
-  packs:
-  node_modules:
-  cache:
   bundle:
